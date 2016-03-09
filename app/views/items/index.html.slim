@@ -1,0 +1,39 @@
+- provide(:title, 'Shop')
+.container.content-area
+  h1.center
+    | Shop
+  br
+  .row
+    = link_to carts_path
+      | Корзина: 
+      = @carts_count
+  .row
+    = render 'layouts/messages'
+  .row
+    = render 'search_form_for'
+  br
+  - if user_signed_in?
+    - if current_user.admin?
+      .row
+        .col-sm-3
+          = link_to 'Create item', new_item_path, class: 'btn btn-md btn-success'
+  br
+  .center
+    .table-responsive
+      table.table.table-bordered.table-hover
+        tr.active
+          th.width_5
+            h4 Id
+          th.width_65 colspan="2"
+            h4 Item
+          th.width_15
+            h4 Price
+          th.width_15 colspan="3"
+            h4 Action
+        = render 'item'
+  - if @items.count > 10
+    br
+    .col-sm-12
+      .center
+        = will_paginate
+  br

@@ -1,0 +1,13 @@
+.form-group
+  = form_for @item, html: { multipart: true } do |f|
+    //= render 'shared/error_messages', object: f.object
+    = f.label :name, "Name"
+    = f.text_field :name, placeholder: "Name", class: 'form-control'
+    = f.label :price, "Price"
+    = f.text_field :price, placeholder: "Price", class: 'form-control'
+    = f.label :description, 'Description'
+    = f.text_area :description, placeholder: "Description", class: 'form-control', rows: 6
+    p
+      = f.label :images, 'Photo'
+      = f.file_field :images, multiple: true
+    = f.submit yield(:button_text), class: "btn btn-md btn-success col-md-4 col-md-offset-4"

@@ -1,0 +1,21 @@
+- provide(:title, @item.name)
+.container.content-area
+  h1.center
+    = @item.name
+  = render 'layouts/messages'
+  .center.big_foto
+    = image_tag @item.images[@item.images.count-1].url, width: '70%' if @item.images?
+  br
+  p
+    - image_number = 0
+    - @item.images.count.times do
+      span.w_55px.small_foto
+        - image_number += 1
+        = image_tag @item.images[@item.images.count-image_number].url, height: '30px', alt: "no foto"
+  br
+  p
+    | Опис: 
+    = @item.description
+  p.center 
+    = link_to '#', rel: 'tooltip', title: 'Придбати', class: "btn btn-sm btn-info" do
+      i.glyphicon.glyphicon-shopping-cart

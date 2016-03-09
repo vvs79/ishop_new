@@ -1,0 +1,20 @@
+- @carts.each_with_index do |cart, index|
+  tr.info
+    td.center
+      = link_to item_path(cart.item), rel: 'tooltip', title: 'Show item'
+        = set_id(index)
+    td.w_55px
+      = link_to item_path(cart.item), rel: 'tooltip', title: 'Show item'
+        | #{cart.item.name}
+    td
+      = link_to item_path(cart.item), rel: 'tooltip', title: 'Show item'
+        | #{cart.quantity}
+    td.center
+      = link_to item_path(cart.item), rel: 'tooltip', title: 'Show item'
+        | #{cart.item.price}
+    td.center
+      = cart.item.price * cart.quantity
+    - if user_signed_in?
+      td.center
+        = link_to cart_path(cart), method: :delete, data: { confirm: 'Are you sure?' }, rel: 'tooltip', title: 'Delete item from cart', class: "btn btn-sm btn-danger" do
+          item.glyphicon.glyphicon-remove
